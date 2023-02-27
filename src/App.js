@@ -183,17 +183,6 @@ const Component = ({
     //   backgroundImage
     // });
 
-    // console.log({
-    //   id, ...{
-    //     top,
-    //     left,
-    //     width: newWidth,
-    //     height: newHeight,
-    //     color,
-    //     backgroundImage
-    //   }
-    // });
-
     // ACTUALIZAR NODO REFERENCIA
     const beforeTranslate = e.drag.beforeTranslate;
 
@@ -223,13 +212,28 @@ const Component = ({
       color,
       backgroundImage
     });
+    console.log("NODO DE REFERENCIA _________________");
+    console.log({
+      ...{
+        ...nodoReferencia,
+        translateX,
+        translateY,
+        top: top + translateY < 0 ? 0 : top + translateY,
+        left: left + translateX < 0 ? 0 : left + translateX,
+      }
+    });
+
+
+    // console.log("NODO DE MUVABLE _________________");
+
     // console.log({
-    //   ...{
-    //     ...nodoReferencia,
-    //     translateX,
-    //     translateY,
+    //   id, ...{
     //     top: top + translateY < 0 ? 0 : top + translateY,
     //     left: left + translateX < 0 ? 0 : left + translateX,
+    //     width: newWidth,
+    //     height: newHeight,
+    //     color,
+    //     backgroundImage
     //   }
     // });
   };
@@ -240,7 +244,8 @@ const Component = ({
     // console.log("new Width " + newWidth);
     // console.log("new Height " + newHeight);
     // console.log("---------------------------");
-
+    // console.log(top);
+    // console.log(newHeight);
     const positionMaxTop = top + newHeight;
     const positionMaxLeft = left + newWidth;
 
@@ -253,16 +258,16 @@ const Component = ({
     const { drag } = lastEvent;
     const { beforeTranslate } = drag;
 
-    const absoluteTop = top + beforeTranslate[1];
-    const absoluteLeft = left + beforeTranslate[0];
-
-    // console.log("absoluteTop " + absoluteTop);
-    // console.log("absoluteTop " + absoluteTop);
-    // console.log("---------------------------");
+    const absoluteTop = top + beforeTranslate[0];
+    const absoluteLeft = left + beforeTranslate[1];
+    console.log(beforeTranslate);
+    console.log("absoluteTop " + absoluteTop);
+    console.log("absoluteLeft " + absoluteLeft);
+    console.log("---------------------------");
     updateMoveable(
       id,
       {
-        top: absoluteTop,
+        top: "0",
         left: absoluteLeft,
         width: newWidth,
         height: newHeight,
